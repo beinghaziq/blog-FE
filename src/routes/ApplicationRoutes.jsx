@@ -7,7 +7,7 @@ import { Post } from "../components/Post";
 export const ApplicationRoutes = () => (
   <ErrorBoundary>
     <Routes>
-      <Route path={routes.allBlogs} element={<Post />} />
+      <Route path={ routes.allBlogs } element={ <Post /> } />
     </Routes>
   </ErrorBoundary>
 );
