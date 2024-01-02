@@ -1,3 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 export const Post = () => {
-  return <h2>Hi, I am a Car!</h2>;
+  const { t } = useTranslation();
+
+  return <h2>{`${t("text.car")}`}</h2>;
 };
