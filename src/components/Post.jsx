@@ -11,9 +11,13 @@ export const Post = () => {
 
   return (
     <div>
-      <h1>Count: {count}</h1>
-      <Button onClick={() => dispatch(increment())}>{t("button.increment")}</Button>
-      <Button onClick={() => dispatch(decrement())}>{t("button.decrement")}</Button>
+      <h1>{t("heading.count")}: {count}</h1>
+      <Button onClick={() => dispatch(increment())}>
+        {t("button.increment")}
+      </Button>
+      <Button onClick={() => dispatch(decrement())}>
+        {t("button.decrement")}
+      </Button>
       <h2>{t("text.car")}</h2>
     </div>
   );
