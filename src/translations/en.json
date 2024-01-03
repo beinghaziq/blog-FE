@@ -1,6 +1,8 @@
 {
-    
-    "button.backToDashboard": "Back to dashboard",
-    "heading.ourFault": "It's our fault",
-    "text.car": "Hi, I am a Car!"
+  "button.backToDashboard": "Back to dashboard",
+  "button.increment": "Increment",
+  "button.decrement": "Decrement",
+  "heading.ourFault": "It's our fault",
+  "heading.count": "count: {{count}}",
+  "text.car": "Hi, I am a Car!"
 }
