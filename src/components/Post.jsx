@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { increment, decrement } from "../store/counterSlice";
 import { counter } from "../selectors/counterSelector";
+import { Button } from "./elements/Button"
 
 export const Post = () => {
   const { t } = useTranslation();
@@ -11,18 +12,8 @@ export const Post = () => {
   return (
     <div>
       <h1>Count: {count}</h1>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => dispatch(increment())}
-      >
-        Increment
-      </button>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => dispatch(decrement())}
-      >
-        Decrement
-      </button>
+      <Button onClick={() => dispatch(increment())}>{t("button.increment")}</Button>
+      <Button onClick={() => dispatch(decrement())}>{t("button.decrement")}</Button>
       <h2>{t("text.car")}</h2>
     </div>
   );

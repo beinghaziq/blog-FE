@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Button } from "../components/elements/Button";
 
 export const Error500 = () => {
   const { t } = useTranslation();
@@ -13,9 +14,9 @@ export const Error500 = () => {
             alt="500 error"
           />
           <h1>{t("heading.ourFault")}</h1>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <Button>
             {t("button.backToDashboard")}
-          </button>
+          </Button>
         </div>
       </div>
     </div>
