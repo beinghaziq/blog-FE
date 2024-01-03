@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { increment, decrement } from "../store/counterSlice";
+import { counter } from "../selectors/counterSelector";
 
 export const Post = () => {
   const { t } = useTranslation();
-  const count = useSelector((state) => state.counter.value);
+  const count = useSelector(counter);
   const dispatch = useDispatch();
 
   return (
