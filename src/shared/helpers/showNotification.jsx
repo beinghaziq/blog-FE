@@ -14,16 +14,7 @@ export const showNotification = ({
   type = NotificationType.ERROR,
   toastOptions = {},
 }) => {
-  const Msg = () =>
-    (
-      <div>
-        <strong className="title">
-          check 
-        </strong>
-        <span className="meeting-title">kjsbdkb</span>
-      </div>);
-
-  toast(type === NotificationType.NOTIFICATION ? Msg : message, {
+  toast(message, {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: true,

@@ -27,11 +27,7 @@ export const blogSlice = createSlice({
     });
     builder.addCase(fetchBlogs.fulfilled, (state, action) => {
       state.isBlogsLoading = false;
-      if (Array.isArray(action.payload)) {
-        state.blogs = action.payload ? action.payload : [];
-      } else {
-        state.blogs = action.payload.results ? action.payload.results : [];
-      }
+      state.blogs = action.payload ? action.payload : [];
     });
     builder.addCase(fetchBlogs.rejected, (state) => {
       state.isBlogsLoading = false;
@@ -87,7 +83,7 @@ export const fetchBlogs = createAsyncThunk('fetchBlogs', async () => {
 export const fetchBlog = createAsyncThunk('fetchBlog', async (id) => {
   try {
     const response = await getBlog(id);
-
+    
     return response.data;
   } catch (error) {
     showNotification({ message: parseResponseErrors(error) });
