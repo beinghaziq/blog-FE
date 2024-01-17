@@ -3,86 +3,79 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { parseResponseErrors } from '../shared/helpers/parseErrors';
 import { showNotification } from '../shared/helpers/showNotification';
 import {
-  addEducation,
-  deleteEducation,
-  editEducation,
-  getEducation,
-  getEducations,
-} from 'domains/shared/services/educationService';
+  createBlog,
+  deleteBlog,
+  updateBlog,
+  getBlog,
+  getBlogs,
+} from '../services/blogService';
 
 const initialState = {
-  isEducationsLoading: false,
-  isEducationLoading: false,
-  educations: [],
-  recommendations: [],
-  recommendation: recommendationInitialValues,
-  isRecommendationsLoading: false,
-  isRecommendationLoading: false,
-  education: { title: '', content: '', tags: [], language: '', url: '' },
-  pageInfo: null,
+  isBlogsLoading: false,
+  isBlogLoading: false,
+  blogs: [],
+  blog: { title: '', body: '' },
 };
 
-export const educationSlice = createSlice({
-  name: 'education',
+export const blogSlice = createSlice({
+  name: 'blog',
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(fetchEducations.pending, (state) => {
-      state.isEducationsLoading = true;
+    builder.addCase(fetchBlogs.pending, (state) => {
+      state.isBlogsLoading = true;
     });
-    builder.addCase(fetchEducations.fulfilled, (state, action) => {
-      state.isEducationsLoading = false;
-
+    builder.addCase(fetchBlogs.fulfilled, (state, action) => {
+      state.isBlogsLoading = false;
       if (Array.isArray(action.payload)) {
-        state.educations = action.payload ? action.payload : [];
+        state.blogs = action.payload ? action.payload : [];
       } else {
-        state.educations = action.payload.results ? action.payload.results : [];
+        state.blogs = action.payload.results ? action.payload.results : [];
       }
     });
-    builder.addCase(fetchEducations.rejected, (state) => {
-      state.isEducationsLoading = false;
+    builder.addCase(fetchBlogs.rejected, (state) => {
+      state.isBlogsLoading = false;
     });
 
-    builder.addCase(fetchEducation.pending, (state) => {
-      state.isEducationLoading = true;
+    builder.addCase(fetchBlog.pending, (state) => {
+      state.isBlogLoading = true;
     });
-    builder.addCase(fetchEducation.fulfilled, (state, action) => {
-      state.isEducationLoading = false;
-      state.education = action.payload;
+    builder.addCase(fetchBlog.fulfilled, (state, action) => {
+      state.isBlogLoading = false;
+      state.blog = action.payload;
     });
-    builder.addCase(fetchEducation.rejected, (state) => {
-      state.isEducationLoading = false;
+    builder.addCase(fetchBlog.rejected, (state) => {
+      state.isBlogLoading = false;
     });
-    builder.addCase(removeEducation.pending, (state) => {
-      state.isEducationsLoading = true;
+    builder.addCase(removeBlog.pending, (state) => {
+      state.isBlogsLoading = true;
     });
-    builder.addCase(removeEducation.fulfilled, (state, action) => {
-      state.isEducationsLoading = false;
-      state.educations = state.educations.filter((education) => education.id !== action.payload.id);
+    builder.addCase(removeBlog.fulfilled, (state, action) => {
+      state.isBlogsLoading = false;
+      state.blogs = state.blogs.filter((blog) => blog.id !== action.payload.id);
     });
-    builder.addCase(removeEducation.rejected, (state) => {
-      state.isEducationsLoading = false;
+    builder.addCase(removeBlog.rejected, (state) => {
+      state.isBlogsLoading = false;
     });
-    builder.addCase(updateEducation.fulfilled, (state, action) => {
-      state.isEducationsLoading = false;
-      const updatedEducations = state.educations.map((education) =>
-        education.id === action.payload.id ? action.payload : education
+    builder.addCase(editBlog.fulfilled, (state, action) => {
+      state.isBlogsLoading = false;
+      const updatedBlogs = state.blogs.map((blog) =>
+        blog.id === action.payload.id ? action.payload : blog
       );
 
-      state.educations = updatedEducations;
+      state.blogs = updatedBlogs;
     });
-    builder.addCase(newEducation.fulfilled, (state, action) => {
-      const educations = state.educations;
+    builder.addCase(newBlog.fulfilled, (state, action) => {
+      const blogs = state.blogs;
 
-      state.educations = [...educations, action.payload];
+      state.blogs = [...blogs, action.payload];
     });
   },
 });
 
-export const fetchBlogs = createAsyncThunk('fetchBlogs', async (values) => {
+export const fetchBlogs = createAsyncThunk('fetchBlogs', async () => {
   try {
-    const response = await getEducations(values);
-
+    const response = await getBlogs();
     return response.data;
   } catch (error) {
     showNotification({ message: parseResponseErrors(error) });
@@ -91,9 +84,9 @@ export const fetchBlogs = createAsyncThunk('fetchBlogs', async (values) => {
   }
 });
 
-export const fetchEducation = createAsyncThunk('fetchBlog', async (id) => {
+export const fetchBlog = createAsyncThunk('fetchBlog', async (id) => {
   try {
-    const response = await getEducation(id);
+    const response = await getBlog(id);
 
     return response.data;
   } catch (error) {
@@ -104,37 +97,26 @@ export const fetchEducation = createAsyncThunk('fetchBlog', async (id) => {
 });
 export const removeBlog = createAsyncThunk("removeBlog", async (id) => {
   try {
-    const response = await deleteEducation(id);
+    const response = await deleteBlog(id);
 
     return response.data;
   } catch (error) {
     return Promise.reject(parseResponseErrors(error));
   }
 });
-export const updateEducation = createAsyncThunk(
-  'updateBlog',
-  async ({
-    id,
-    values,
-   }) => {
-    try {
-      const response = await editEducation(id, values);
+export const editBlog = createAsyncThunk("editBlog", async ({ id, values }) => {
+  try {
+    const response = await updateBlog(id, values);
 
-      return response.data;
-    } catch (error) {
-      return Promise.reject(parseResponseErrors(error));
-    }
+    return response.data;
+  } catch (error) {
+    return Promise.reject(parseResponseErrors(error));
   }
-);
-export const newBlog = createAsyncThunk(
-  "newBlog",
-  async ({ values, image, thumbnail, tags }) => {
+});
+export const newBlog = createAsyncThunk('newBlog',async ({ values }) => {
     try {
-      const response = await addEducation({
-        ...values,
-        image,
-        thumbnail,
-        tags,
+      const response = await createBlog({
+        values,
       });
 
       return response.data;
@@ -144,4 +126,4 @@ export const newBlog = createAsyncThunk(
   }
 );
 
-export const { reducer: educationReducer } = educationSlice;
+export const { reducer: blogReducer } = blogSlice;

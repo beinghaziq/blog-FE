@@ -1,6 +1,6 @@
-export const parseResponseErrors = (
-  error
-) => {
+import i18n from "i18next";
+
+export const parseResponseErrors = (error) => {
   let notificationString = i18n.t("shared.notifications.somethingWentWrong");
 
   if (!error) {
@@ -31,4 +31,3 @@ export const parseResponseErrors = (
 
 export const checkHasProperty = (obj, propertyName) =>
   Object.prototype.hasOwnProperty.call(obj, propertyName);
-
