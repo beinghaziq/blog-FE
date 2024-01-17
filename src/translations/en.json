@@ -4,5 +4,7 @@
   "button.decrement": "Decrement",
   "heading.ourFault": "It's our fault",
   "heading.count": "count: {{count}}",
+  "shared.notifications.somethingWentWrong": "Something went wrong!",
+  "shared.notifications.serverNotResponding": "Server is not responding",
   "text.car": "Hi, I am a Car!"
 }
