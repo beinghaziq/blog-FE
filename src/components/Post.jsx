@@ -14,8 +14,10 @@ export const Post = () => {
   const dispatch = useDispatch();
 
    useEffect(() => {
-    dispatch(fetchBlogs());
-   }, [dispatch]);
+     if (!allBlogs.length) {
+       dispatch(fetchBlogs());
+     }
+   }, [dispatch, allBlogs]);
 
   return (
     <div>
