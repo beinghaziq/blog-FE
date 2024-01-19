@@ -22,25 +22,25 @@ export const blogSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(fetchBlogs.pending, (state) => {
+    builder.addCase(fetchAllBlogs.pending, (state) => {
       state.isBlogsLoading = true;
     });
-    builder.addCase(fetchBlogs.fulfilled, (state, action) => {
+    builder.addCase(fetchAllBlogs.fulfilled, (state, action) => {
       state.isBlogsLoading = false;
       state.blogs = action.payload ? action.payload : [];
     });
-    builder.addCase(fetchBlogs.rejected, (state) => {
+    builder.addCase(fetchAllBlogs.rejected, (state) => {
       state.isBlogsLoading = false;
     });
 
-    builder.addCase(fetchBlog.pending, (state) => {
+    builder.addCase(fetchBlogById.pending, (state) => {
       state.isBlogLoading = true;
     });
-    builder.addCase(fetchBlog.fulfilled, (state, action) => {
+    builder.addCase(fetchBlogById.fulfilled, (state, action) => {
       state.isBlogLoading = false;
       state.blog = action.payload;
     });
-    builder.addCase(fetchBlog.rejected, (state) => {
+    builder.addCase(fetchBlogById.rejected, (state) => {
       state.isBlogLoading = false;
     });
     builder.addCase(removeBlog.pending, (state) => {
@@ -69,7 +69,7 @@ export const blogSlice = createSlice({
   },
 });
 
-export const fetchBlogs = createAsyncThunk('fetchBlogs', async () => {
+export const fetchAllBlogs = createAsyncThunk("fetchAllBlogs", async () => {
   try {
     const response = await getBlogs();
     return response.data;
@@ -80,7 +80,7 @@ export const fetchBlogs = createAsyncThunk('fetchBlogs', async () => {
   }
 });
 
-export const fetchBlog = createAsyncThunk('fetchBlog', async (id) => {
+export const fetchBlogById = createAsyncThunk('fetchBlogById', async (id) => {
   try {
     const response = await getBlog(id);
     

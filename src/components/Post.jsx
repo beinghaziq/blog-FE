@@ -5,7 +5,7 @@ import { increment, decrement } from "../store/counterSlice";
 import { counter } from "../selectors/counterSelector";
 import { blogs } from "../selectors/blogSelector";
 import { Button } from "./elements/Button"
-import { fetchBlogs } from "../store/blogSlice";
+import { fetchAllBlogs } from "../store/blogSlice";
 
 export const Post = () => {
   const { t } = useTranslation();
@@ -15,7 +15,7 @@ export const Post = () => {
 
    useEffect(() => {
      if (!allBlogs.length) {
-       dispatch(fetchBlogs());
+       dispatch(fetchAllBlogs());
      }
    }, [dispatch, allBlogs]);
 
