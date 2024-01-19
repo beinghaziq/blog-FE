@@ -1,8 +1,8 @@
-import { baseService } from "./baseService";
+import { baseService } from 'services/baseService';
 
 export const blogActions = {
-  allBlogs: "/blog",
-  createBlog: "/blogs",
+  allBlogs: '/blog',
+  createBlog: '/blogs',
   singleBlog: (blog_id) => `/blog/${blog_id}`,
 };
 
