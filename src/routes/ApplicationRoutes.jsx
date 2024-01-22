@@ -1,8 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 
-import { routes } from "../constants/routes";
-import ErrorBoundary from "../shared/ErrorBoundry";
-import { Post } from "../components/Post";
+import { routes } from 'constants/routes';
+import ErrorBoundary from 'shared/ErrorBoundry';
+import { Post } from 'components/Post';
 
 export const ApplicationRoutes = () => (
   <ErrorBoundary>

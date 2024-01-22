@@ -1,12 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
 
 const apiService = () => {
   const headers = {
-    "Content-Type": "application/json",
-    "X-API-KEY": process.env.REACT_APP_API_KEY,
+    'Content-Type': 'application/json',
+    'X-API-KEY': process.env.REACT_APP_API_KEY,
   };
   const defaultOptions = {
-    baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/",
+    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000/',
     headers: headers,
   };
 

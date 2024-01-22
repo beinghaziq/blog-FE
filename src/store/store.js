@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { counterReducer } from "./counterSlice";
-import { blogReducer } from "./blogSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import { counterReducer } from 'store/counterSlice';
+import { blogReducer } from 'store/blogSlice';
 
 export const store = configureStore({
   reducer: {

@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import  { Error500 }  from "./Error500";
+import  { Error500 }  from 'shared/Error500';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {

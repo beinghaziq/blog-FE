@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { parseResponseErrors } from '../shared/helpers/parseErrors';
-import { showNotification } from '../shared/helpers/showNotification';
+import { parseResponseErrors } from 'shared/helpers/parseErrors';
+import { showNotification } from 'shared/helpers/showNotification';
 import {
   createBlog,
   deleteBlog,
   updateBlog,
   getBlog,
   getBlogs,
-} from '../services/blogService';
+} from 'services/blogService';
 
 const initialState = {
   isBlogsLoading: false,
@@ -69,7 +69,7 @@ export const blogSlice = createSlice({
   },
 });
 
-export const fetchAllBlogs = createAsyncThunk("fetchAllBlogs", async () => {
+export const fetchAllBlogs = createAsyncThunk('fetchAllBlogs', async () => {
   try {
     const response = await getBlogs();
     return response.data;
@@ -91,7 +91,7 @@ export const fetchBlogById = createAsyncThunk('fetchBlogById', async (id) => {
     return Promise.reject();
   }
 });
-export const removeBlog = createAsyncThunk("removeBlog", async (id) => {
+export const removeBlog = createAsyncThunk('removeBlog', async (id) => {
   try {
     const response = await deleteBlog(id);
 
@@ -100,7 +100,7 @@ export const removeBlog = createAsyncThunk("removeBlog", async (id) => {
     return Promise.reject(parseResponseErrors(error));
   }
 });
-export const editBlog = createAsyncThunk("editBlog", async ({ id, values }) => {
+export const editBlog = createAsyncThunk('editBlog', async ({ id, values }) => {
   try {
     const response = await updateBlog(id, values);
 

@@ -1,12 +1,12 @@
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 
 export const NotificationType = {
-  NOTIFICATION: "notification",
-  ERROR: "error",
-  SUCCESS: "success",
-  WARNING: "warning",
-  INFO: "info",
+  NOTIFICATION: 'notification',
+  ERROR: 'error',
+  SUCCESS: 'success',
+  WARNING: 'warning',
+  INFO: 'info',
 };
 
 export const showNotification = ({
@@ -15,7 +15,7 @@ export const showNotification = ({
   toastOptions = {},
 }) => {
   toast(message, {
-    position: "top-right",
+    position: 'top-right',
     autoClose: 5000,
     hideProgressBar: true,
     closeOnClick: true,
@@ -23,8 +23,8 @@ export const showNotification = ({
     draggable: true,
     type: type,
     progress: undefined,
-    className: "toast-message",
-    closeButton: "X",
+    className: 'toast-message',
+    closeButton: 'X',
     ...toastOptions,
   });
 };
